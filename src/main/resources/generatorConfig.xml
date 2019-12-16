@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 数据库驱动 -->
+    <!--
+    <classPathEntry location="D:\mysql-connector-java-5.1.9.jar" />
+    -->
+    <context id="orcalTables" targetRuntime="MyBatis3Simple">
+        <!--配置生成序列化插件
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        -->
+        <!--配置生成toString插件-->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+        <!--<commentGenerator type="config.MyCommentGenerator.java">-->
+            <!--<property name="suppressDate" value="false" />-->
+            <!--<property name="suppressAllComments" value="false" />-->
+        <!--</commentGenerator>-->
+
+        <commentGenerator type="config.MyCommentGenerator">
+            <!-- 不要开启，否则将不会使用自定义注释 -->
+            <!-- <property name="suppressAllComments" value="true"> -->
+        </commentGenerator>
+
+
+         <!-- oracle.jdbc.driver.OracleDriver-->
+        <jdbcConnection
+                driverClass="oracle.jdbc.OracleDriver"
+                connectionURL="jdbc:oracle:thin:@10.6.50.215:1521:amldb"
+                userId="aml"
+                password="aml">
+            <!--获取数据库注释-->
+            <property name="remarksReporting" value="true"></property>
+            <!-- 这里面可以设置property属性，每一个property属性都设置到配置的Driver上 -->
+        </jdbcConnection>
+
+        <!-- <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver> -->
+        <javaModelGenerator targetPackage="ibp.dto.are"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+            <property name="trimStrings" value="false"/>
+            <!--生成的所有类继承一个父类ibp.dto.core.BaseDTO.BaseDTO 此处填写全类名
+            这个父类 必须是一个jar的形式用pom文件引用，这里才会生效-->
+            <property name="BaseDTO" value="ibp.dto.core.BaseDTO"/>
+
+        </javaModelGenerator>
+
+
+        <sqlMapGenerator  targetPackage="ibp/ioc/dao/are"
+                         targetProject="src/main/java" >
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="ibp.ioc.dao.are"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+        <!--schema="" 指定系统用户-->
+        <table schema="aml" tableName="T1D_FEATURE" domainObjectName="T1d_featureDTO" mapperName="T1d_featureDAO"
+               enableInsert = "true"
+               enableSelectByPrimaryKey="false"
+               enableUpdateByPrimaryKey="false"
+               enableDeleteByPrimaryKey="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--name="useActualColumnNames"  value="false"  false 驼峰式命名 true带_下划线命名 -->
+            <property  name="useActualColumnNames"  value="true" />
+
+        </table>
+    </context>
+</generatorConfiguration>

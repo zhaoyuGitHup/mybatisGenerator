@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ibp.ioc.dao.are.T1d_featureDTOMapper">
+  <insert id="insert" parameterType="ibp.dto.are.T1d_featureDTO">
+    insert into AML.T1D_FEATURE (FETR_ID, FETR_NAME, FETR_TYPE, 
+      PBC_TCR, FETR_CATG, EXEC_MODE, 
+      IS_PROP, IS_NET, IS_CASE, 
+      CRIME_TYPE, FETR_DESC, CREATE_TM, 
+      CREATOR, MODIFY_TM, MODIFIER, 
+      IS_VALID, FETR_S_TYPE, SOURCE_ACCORDANCE
+      )
+    values (#{FETR_ID,jdbcType=VARCHAR}, #{FETR_NAME,jdbcType=VARCHAR}, #{FETR_TYPE,jdbcType=VARCHAR}, 
+      #{PBC_TCR,jdbcType=VARCHAR}, #{FETR_CATG,jdbcType=VARCHAR}, #{EXEC_MODE,jdbcType=VARCHAR}, 
+      #{IS_PROP,jdbcType=VARCHAR}, #{IS_NET,jdbcType=VARCHAR}, #{IS_CASE,jdbcType=VARCHAR}, 
+      #{CRIME_TYPE,jdbcType=VARCHAR}, #{FETR_DESC,jdbcType=VARCHAR}, #{CREATE_TM,jdbcType=VARCHAR}, 
+      #{CREATOR,jdbcType=VARCHAR}, #{MODIFY_TM,jdbcType=VARCHAR}, #{MODIFIER,jdbcType=VARCHAR}, 
+      #{IS_VALID,jdbcType=VARCHAR}, #{FETR_S_TYPE,jdbcType=VARCHAR}, #{SOURCE_ACCORDANCE,jdbcType=VARCHAR}
+      )
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select FETR_ID, FETR_NAME, FETR_TYPE, PBC_TCR, FETR_CATG, EXEC_MODE, IS_PROP, IS_NET, 
+    IS_CASE, CRIME_TYPE, FETR_DESC, CREATE_TM, CREATOR, MODIFY_TM, MODIFIER, IS_VALID, 
+    FETR_S_TYPE, SOURCE_ACCORDANCE
+    from AML.T1D_FEATURE
+  </select>
+</mapper>
